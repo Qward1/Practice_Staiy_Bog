@@ -165,7 +165,7 @@ def remove_duplicates():
         conn.commit()
     finally:
         conn.close()
-    logging.info("Дубликаты в таблице 'vacancies' успешно обработаны.")
+    logging.info('Дубликаты в таблице "vacancies" успешно обработаны.')
 
 def run_parsing_job():
     logging.info("Запуск парсинга...")
