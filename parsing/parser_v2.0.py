@@ -8,7 +8,7 @@ import logging
 hh_api_token = 'APPLO2LFALFT1KA1RTCR8LANBL6GQ15C6SU6V92NF5H3M9590IJ24DM15QVR8RFJ'
 
 
-DB_FILE = 'db_for_vacancies.sqlite3'
+DB_FILE = '/db_for_vacancies.sqlite3'
 
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')

@@ -190,9 +190,9 @@ if __name__ == "__main__":
         "Техническое лидерство": ["Team Lead", "Архитектор", "Менторство"]
     }
 
-    process_vacancies('db_for_vacancies.sqlite3', skills)
+    process_vacancies('../database/db_for_vacancies.sqlite3', skills)
 
-    conn = sqlite3.connect('db_for_vacancies.sqlite3')
+    conn = sqlite3.connect('../database/db_for_vacancies.sqlite3')
     cursor = conn.cursor()
     cursor.execute('SELECT * FROM vacancy_skills LIMIT 5')
     print('\nПервые пять штук: ')
