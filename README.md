@@ -16,7 +16,8 @@
 
 
 📊 Примеры графиков
-![skill_coverage_pie_3D](https://github.com/user-attachments/assets/72de4448-5fe0-48f3-8483-abf06b1608fb)
+![skill_gap_analysis_3D](https://github.com/user-attachments/assets/4930ed59-3f91-4962-b859-1ac49475e6e8)
+
 
 
 📂 Структура проекта
