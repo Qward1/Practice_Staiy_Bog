@@ -114,7 +114,7 @@ def save_vacancy(conn, link, description):
 if __name__ == "__main__":
     try:
 
-        conn = sqlite3.connect('db_for_vacancies.sqlite3')
+        conn = sqlite3.connect('../database/db_for_vacancies.sqlite3')
         # получаем токен
         access_token = get_access_token()
         print("\n🔑 Успешная авторизация!")
