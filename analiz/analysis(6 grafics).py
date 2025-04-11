@@ -126,7 +126,7 @@ def identify_most_valuable_missing_skills(missing_skills_df, top_n=10):
 #
 def visualize_results(coverage, missing_skills_df, overlap_skills_df, market_skills_df):
     """
-    Улучшенная визуализация результатов анализа навыков.
+    
 
     Параметры:
         coverage: процент покрытия навыков
@@ -136,20 +136,34 @@ def visualize_results(coverage, missing_skills_df, overlap_skills_df, market_ski
     """
     plt.style.use('ggplot')
 
+    weight_coverage = 0.5
+    weight_similarity = 0.5
+    adjusted_coverage = coverage * weight_coverage + similarity_score * 100 * weight_similarity
+
+
     # График 1: Круговая диаграмма покрытия навыков
     fig, ax = plt.subplots(figsize=(8, 8))
-    wedges, texts, autotexts = ax.pie([coverage, 100 - coverage],
-                                      labels=['Покрыто', 'Не покрыто'],
-                                      autopct='%1.1f%%',
-                                      colors=['#2ecc71', '#e74c3c'],
-                                      startangle=140,
-                                      wedgeprops={'edgecolor': 'black', 'linewidth': 1.5},
-                                      textprops={'fontsize': 12})
-    for autotext in autotexts:
-        autotext.set_color('white')
-        autotext.set_fontsize(14)
-        autotext.set_fontweight('bold')
-    ax.set_title('Процент покрытия навыков рынка труда', fontsize=18, fontweight='bold')
+    fig, ax = plt.subplots(figsize=(8, 8), dpi=300)
+    fig.suptitle('Общее соответствие программы требованиям рынка\n(с учётом покрытия и семантики)',
+                 fontsize=16, weight='bold', color='#2c3e50')
+
+    values = [adjusted_coverage, 100 - adjusted_coverage]
+    labels = [f'Соответствие\n({adjusted_coverage:.1f}%)',
+              f'Несоответствие\n({100 - adjusted_coverage:.1f}%)']
+
+    wedges, texts, autotexts = ax.pie(
+        values,
+        labels=labels,
+        autopct=lambda p: f'{p:.1f}%',
+        startangle=140,
+        wedgeprops={'edgecolor': 'white', 'linewidth': 2},
+        textprops={'fontsize': 12, 'color': 'white'},
+        colors=['#27ae60', '#c0392b'],
+        explode=(0.04, 0)
+    )
+
+    ax.set_title(f'Coverage: {coverage:.1f}%  |  Semantic Similarity: {similarity_score * 100:.1f}%', fontsize=12)
+
     plt.savefig('skill_coverage_pie.png', dpi=300)
     plt.close()
 
